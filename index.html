@@ -119,14 +119,23 @@ header{padding:16px 0;background:#fff;border-bottom:1px solid var(--line);positi
 .ogrid img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;box-shadow:0 8px 22px rgba(11,46,85,.10);transition:.25s;cursor:pointer}
 .ogrid img:hover{transform:scale(1.02);box-shadow:0 16px 34px rgba(11,46,85,.18)}
 
+/* ---------- lightbox ---------- */
+.lightbox{position:fixed;inset:0;background:rgba(8,18,30,.9);display:none;align-items:center;justify-content:center;z-index:60;padding:20px;cursor:zoom-out}
+.lightbox.open{display:flex;animation:fade .2s ease}
+.lightbox img{max-width:96vw;max-height:92vh;border-radius:10px;box-shadow:0 30px 90px rgba(0,0,0,.6)}
+.lightbox .lclose{position:absolute;top:14px;right:20px;background:none;border:none;color:#fff;font-size:34px;cursor:pointer;line-height:1}
+
 /* ---------- reviews ---------- */
 .reviews{margin-top:72px;display:none}
 .reviews.show{display:block}
 .rsum{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-.rsum .rchip{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 16px;font-size:14px;font-weight:700;color:var(--blue-deep);box-shadow:0 4px 12px rgba(11,46,85,.06)}
+.rsum .rchip{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 16px;font-size:14px;font-weight:700;color:var(--blue-deep);box-shadow:0 4px 12px rgba(11,46,85,.06);text-decoration:none;transition:.2s}
+a.rchip:hover{border-color:var(--blue);transform:translateY(-2px)}
+.rsum .rchip .go{color:var(--blue);font-weight:600;font-size:12.5px}
 .rsum .rchip .stars{color:var(--orange);letter-spacing:2px}
 .rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:24px}
-.rcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 6px 18px rgba(11,46,85,.05);display:flex;flex-direction:column}
+.rcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 6px 18px rgba(11,46,85,.05);display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:.2s;cursor:pointer}
+.rcard:hover{border-color:var(--blue);transform:translateY(-3px);box-shadow:0 14px 30px rgba(11,46,85,.12)}
 .rcard .rhead{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
 .rcard .rname{font-weight:700;color:var(--blue-deep);font-size:14.5px}
 .rcard .rsrc{font-size:11px;font-weight:800;letter-spacing:.5px;padding:4px 9px;border-radius:6px;background:rgba(0,90,157,.08);color:var(--blue)}
@@ -446,8 +455,8 @@ footer{margin-top:80px;background:var(--blue-deep);color:#fff;padding:38px 0 44p
 <section class="wrap reviews" id="reviews">
   <h2 class="section-title">Отзывы клиентов</h2>
   <div class="rsum">
-    <div class="rchip"><span class="stars">★★★★★</span> Авито 5,0 · 26 отзывов</div>
-    <div class="rchip"><span class="stars">★★★★★</span> 2ГИС 5,0</div>
+    <a class="rchip" id="chipAvito" target="_blank" rel="noopener"><span class="stars">★★★★★</span> Авито 5,0 · 26 отзывов <span class="go">смотреть →</span></a>
+    <a class="rchip" id="chipGis" target="_blank" rel="noopener"><span class="stars">★★★★★</span> 2ГИС 5,0 <span class="go">смотреть →</span></a>
   </div>
   <div class="rgrid" id="rgrid"></div>
 </section>
@@ -519,6 +528,12 @@ footer{margin-top:80px;background:var(--blue-deep);color:#fff;padding:38px 0 44p
     </div>
   </div>
 </footer>
+
+<!-- ================= ЛАЙТБОКС ФОТО ================= -->
+<div class="lightbox" id="lightbox">
+  <button class="lclose">×</button>
+  <img id="lightboxImg" src="" alt="Фото объекта">
+</div>
 
 <!-- ================= МОДАЛКА ================= -->
 <div class="modal" id="modal">
@@ -660,7 +675,9 @@ var CONFIG = {
   PHONE_DISPLAY: '8 (962) 077-84-14',
   PHONE_TEL: '+79620778414',
   EMAIL: 'i@kuranov-7.ru',
-  WEB3FORMS_KEY: 'f1e73457-4d66-4521-ba20-fc2be63b7b96'   /* Web3Forms → заявки на i@kuranov-7.ru */
+  WEB3FORMS_KEY: 'f1e73457-4d66-4521-ba20-fc2be63b7b96',  /* Web3Forms → заявки на i@kuranov-7.ru */
+  AVITO_URL: 'https://www.avito.ru/brands/i354217874',
+  GIS_URL: 'https://2gis.ru/abakan/search/%D0%BB%D0%B0%D0%B9%D0%BA%20%D1%84%D0%B0%D1%81%D0%B0%D0%B4'
 };
 
 /* ============ ФОТО «ДО/ПОСЛЕ» ============
@@ -694,18 +711,38 @@ var REVIEWS = [
 (function(){
   if(!REVIEWS.length) return;
   document.getElementById('reviews').classList.add('show');
+  function srcUrl(src){ return src === '2ГИС' ? CONFIG.GIS_URL : CONFIG.AVITO_URL; }
+  ['chipAvito','chipGis'].forEach(function(id, i){
+    var url = i ? CONFIG.GIS_URL : CONFIG.AVITO_URL;
+    var el = document.getElementById(id);
+    if(url) el.href = url; else el.querySelector('.go').style.display = 'none';
+  });
   var g = document.getElementById('rgrid');
   REVIEWS.forEach(function(r){
-    var d = document.createElement('div');
+    var url = srcUrl(r.src);
+    var d = document.createElement(url ? 'a' : 'div');
     d.className = 'rcard';
+    if(url){ d.href = url; d.target = '_blank'; d.rel = 'noopener'; }
     d.innerHTML = '<div class="rhead"><span class="rname"></span><span class="rsrc"></span></div>'
       + '<div class="rstars">★★★★★</div><div class="rtext"></div><div class="rdeal"></div>';
     d.querySelector('.rname').textContent = r.name;
     d.querySelector('.rsrc').textContent = r.src;
     d.querySelector('.rtext').textContent = '«' + r.text + '»';
-    d.querySelector('.rdeal').textContent = 'Сделка состоялась · ' + r.deal;
+    d.querySelector('.rdeal').textContent = 'Сделка состоялась · ' + r.deal + (url ? ' · читать на ' + r.src + ' →' : '');
     g.appendChild(d);
   });
+})();
+
+/* ============ лайтбокс для фото объектов ============ */
+(function(){
+  var lb = document.getElementById('lightbox'), im = document.getElementById('lightboxImg');
+  document.querySelectorAll('.ogrid img').forEach(function(img){
+    img.addEventListener('click', function(){
+      im.src = img.src;
+      lb.classList.add('open');
+    });
+  });
+  lb.addEventListener('click', function(){ lb.classList.remove('open'); im.src=''; });
 })();
 
 document.getElementById('phoneTop').href = 'tel:'+CONFIG.PHONE_TEL;
