@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ЛАЙК ФАСАД — кровля, фасады и заборы под ключ. Абакан · Хакасия · Красноярск</title>
+<meta name="description" content="Рассчитайте предварительную стоимость кровли, фасада или забора за 1 минуту. Фиксированная смета без скрытых доплат. Гарантия 36 месяцев.">
+<style>
+:root{
+  --blue:#005A9D;
+  --blue-dark:#003E70;
+  --blue-deep:#0B2E55;
+  --orange:#F29512;
+  --orange-dark:#D97F06;
+  --bg:#F4F7FA;
+  --card:#FFFFFF;
+  --line:#E3EAF2;
+  --line2:#CBD8E6;
+  --text:#1C2B3A;
+  --muted:#5D7189;
+  --muted2:#8B9BAE;
+  --ok:#2E9E5B;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.5;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background:
+  radial-gradient(900px 420px at 85% -5%, rgba(0,90,157,.06), transparent 60%),
+  radial-gradient(700px 400px at -5% 25%, rgba(242,149,18,.05), transparent 60%);
+  pointer-events:none;z-index:0}
+.wrap{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:0 16px}
+
+/* ---------- header ---------- */
+header{padding:16px 0;background:#fff;border-bottom:1px solid var(--line);position:relative;z-index:2}
+.hrow{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:12px}
+.logo img{width:52px;height:52px;object-fit:contain}
+.logo-name{font-size:21px;font-weight:800;color:var(--blue);letter-spacing:.5px;line-height:1.1}
+.logo-name .lk{color:var(--orange)}
+.logo-sub{font-size:11px;letter-spacing:1.4px;color:var(--muted);text-transform:uppercase;margin-top:2px}
+.hphone{text-align:right}
+.hphone a{display:inline-block;background:var(--orange);color:#fff;font-weight:800;font-size:17px;text-decoration:none;padding:10px 18px;border-radius:999px;transition:.2s}
+.hphone a:hover{background:var(--orange-dark)}
+.hphone .region{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:5px}
+
+/* ---------- hero (фото-фон) ---------- */
+.hero{position:relative;background:var(--blue-deep) url('photos/hero.jpg') center 38%/cover no-repeat;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(100deg,rgba(6,30,58,.88) 0%,rgba(6,30,58,.72) 45%,rgba(6,30,58,.38) 100%)}
+.hero-inner{position:relative;z-index:1;padding:78px 0 84px}
+@media(max-width:600px){.hero-inner{padding:56px 0 62px}}
+.hero h1{font-size:clamp(28px,5.5vw,46px);line-height:1.15;color:#fff;font-weight:800;max-width:640px;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero p{margin-top:16px;max-width:540px;color:#E4ECF5;font-size:16.5px;text-shadow:0 1px 10px rgba(0,0,0,.35)}
+.hero .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.hero .badge{background:rgba(0,90,157,.85);backdrop-filter:blur(3px);color:#fff;font-size:13px;font-weight:600;padding:8px 14px;border-radius:10px}
+.hero .badge.or{background:var(--orange)}
+
+/* ---------- calculator ---------- */
+.calc{margin-top:34px;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(11,46,85,.10)}
+.tabs{display:flex;border-bottom:1px solid var(--line);background:#fff}
+.tab{flex:1;padding:17px 6px 15px;text-align:center;cursor:pointer;user-select:none;color:var(--muted);font-size:clamp(14px,2.6vw,17px);font-weight:700;letter-spacing:.6px;text-transform:uppercase;border-bottom:3px solid transparent;transition:.25s}
+.tab:hover{color:var(--blue)}
+.tab.active{color:var(--blue);border-bottom-color:var(--orange);background:linear-gradient(180deg,rgba(0,90,157,.04),transparent)}
+.panel{display:none;padding:26px 22px 30px}
+.panel.active{display:block;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.fld{margin-bottom:20px}
+.fld>label{display:block;font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:9px}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg button{flex:1 1 auto;min-height:48px;padding:10px 14px;background:#fff;border:1.5px solid var(--line2);border-radius:10px;color:var(--text);font-size:14.5px;cursor:pointer;transition:.2s;font-family:var(--sans)}
+.seg button:hover{border-color:var(--blue)}
+.seg button.on{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:700}
+.num{display:flex;align-items:stretch;max-width:280px}
+.num button{width:52px;min-height:52px;background:#fff;border:1.5px solid var(--line2);color:var(--blue);font-size:24px;font-weight:700;cursor:pointer;transition:.2s}
+.num button:first-child{border-radius:10px 0 0 10px}
+.num button:last-child{border-radius:0 10px 10px 0}
+.num button:hover{border-color:var(--blue)}
+.num input{width:100%;min-width:0;text-align:center;background:#fff;border:1.5px solid var(--line2);border-left:none;border-right:none;color:var(--blue-deep);font-size:20px;font-weight:800;outline:none}
+.num input::-webkit-outer-spin-button,.num input::-webkit-inner-spin-button{-webkit-appearance:none}
+.num input[type=number]{-moz-appearance:textfield}
+.hint{font-size:12.5px;color:var(--muted2);margin-top:7px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+@media(max-width:560px){.grid2{grid-template-columns:1fr}}
+
+/* result */
+.result{margin-top:6px;padding:22px;background:linear-gradient(135deg,rgba(0,90,157,.06),rgba(242,149,18,.06));border:1.5px solid rgba(0,90,157,.25);border-radius:12px;text-align:center}
+.result .rlabel{font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);font-weight:700}
+.result .rprice{font-size:clamp(26px,5.5vw,38px);color:var(--blue);font-weight:800;margin:8px 0 4px}
+.result .rnote{font-size:12.5px;color:var(--muted2)}
+.cta{display:block;width:100%;margin-top:18px;padding:18px;background:var(--orange);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;cursor:pointer;transition:.25s;font-family:var(--sans);box-shadow:0 10px 26px rgba(242,149,18,.35)}
+.cta:hover{background:var(--orange-dark)}
+.priv{font-size:11.5px;color:var(--muted2);text-align:center;margin-top:10px}
+
+/* ---------- gallery (до/после) ---------- */
+.gallery{margin-top:72px;display:none}
+.gallery.show{display:block}
+.ba{position:relative;margin-top:26px;border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(11,46,85,.14);user-select:none;background:#000}
+.ba img{display:block;width:100%;aspect-ratio:4/3;max-height:72vh;object-fit:cover;pointer-events:none}
+.ba .after{position:absolute;inset:0;overflow:hidden}
+.ba .after img{position:absolute;inset:0;width:100%;height:100%}
+.ba .divider{position:absolute;top:0;bottom:0;width:3px;background:#fff;box-shadow:0 0 12px rgba(0,0,0,.4);pointer-events:none}
+.ba .knob{position:absolute;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;box-shadow:0 4px 14px rgba(0,0,0,.35);pointer-events:none}
+.ba input[type=range]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.ba .tag{position:absolute;top:14px;padding:6px 12px;border-radius:8px;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#fff;pointer-events:none}
+.ba .tag.b{left:14px;background:rgba(11,46,85,.75)}
+.ba .tag.a{right:14px;background:rgba(242,149,18,.9)}
+.gnav{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}
+.gnav .glabel{font-size:14.5px;color:var(--muted);font-weight:600}
+.gbtns{display:flex;gap:8px}
+.gbtns button{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--line2);background:#fff;color:var(--blue);font-size:18px;cursor:pointer;transition:.2s}
+.gbtns button:hover{border-color:var(--blue)}
+
+/* ---------- objects grid ---------- */
+.objects{margin-top:72px}
+.ogrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
+@media(max-width:700px){.ogrid{grid-template-columns:repeat(2,1fr)}}
+.ogrid img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;box-shadow:0 8px 22px rgba(11,46,85,.10);transition:.25s;cursor:pointer}
+.ogrid img:hover{transform:scale(1.02);box-shadow:0 16px 34px rgba(11,46,85,.18)}
+
+/* ---------- trust ---------- */
+.section-title{font-size:clamp(24px,4.5vw,32px);color:var(--blue-deep);font-weight:800;margin:0 0 8px}
+.section-sub{color:var(--muted);max-width:620px}
+.trust{margin-top:72px}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:28px}
+.tcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 20px;transition:.25s;box-shadow:0 6px 18px rgba(11,46,85,.05)}
+.tcard:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(11,46,85,.10)}
+.tcard .tnum{font-size:15px;font-weight:800;color:#fff;background:var(--blue);width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center}
+.tcard h3{font-size:15.5px;color:var(--blue-deep);margin:14px 0 8px;font-weight:700}
+.tcard p{font-size:13.5px;color:var(--muted)}
+
+/* ---------- steps ---------- */
+.steps{margin-top:72px}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:28px}
+.scard{position:relative;padding:22px 20px;background:#fff;border:1px solid var(--line);border-radius:14px}
+.scard .sn{position:absolute;top:-14px;left:18px;background:var(--orange);color:#fff;font-weight:800;font-size:15px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px rgba(242,149,18,.4)}
+.scard h3{font-size:15.5px;color:var(--blue-deep);margin:10px 0 8px;font-weight:700}
+.scard p{font-size:13.5px;color:var(--muted)}
+
+/* ---------- footer ---------- */
+footer{margin-top:80px;background:var(--blue-deep);color:#fff;padding:38px 0 44px}
+.frow{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.fcol .fname{font-size:18px;font-weight:800;letter-spacing:.5px}
+.fcol .fname .lk{color:var(--orange)}
+.fcol p{font-size:12.5px;color:#B9C8D9;margin-top:8px;max-width:420px}
+.fcol a{color:var(--orange);text-decoration:none}
+.fphone a{display:inline-block;background:var(--orange);color:#fff;font-weight:800;font-size:18px;text-decoration:none;padding:11px 20px;border-radius:999px}
+
+/* ---------- modal ---------- */
+.modal{position:fixed;inset:0;background:rgba(11,30,50,.55);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
+.modal.open{display:flex;animation:fade .25s ease}
+.mbox{width:100%;max-width:440px;background:#fff;border-radius:16px;padding:30px 26px;position:relative;box-shadow:0 30px 80px rgba(11,46,85,.35)}
+.mclose{position:absolute;top:10px;right:14px;background:none;border:none;color:var(--muted);font-size:28px;cursor:pointer;line-height:1}
+.mbox h3{font-size:22px;color:var(--blue-deep);font-weight:800}
+.mbox .msub{font-size:13.5px;color:var(--muted);margin:8px 0 18px}
+.mbox .msummary{font-size:12.5px;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:16px;line-height:1.6}
+.mbox input[type=text],.mbox input[type=tel]{width:100%;padding:15px 14px;margin-bottom:12px;background:#fff;border:1.5px solid var(--line2);border-radius:10px;color:var(--text);font-size:16px;outline:none;transition:.2s}
+.mbox input:focus{border-color:var(--blue)}
+.mbox input.err{border-color:#D9534F}
+.msend{width:100%;padding:16px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.25s}
+.msend:hover{background:var(--orange-dark)}
+.msend[disabled]{opacity:.55;cursor:wait}
+.mthanks{text-align:center;padding:26px 0 10px;display:none}
+.mthanks .tick{width:60px;height:60px;margin:0 auto 18px;border:2px solid var(--ok);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ok);font-size:28px}
+.mthanks h3{margin-bottom:8px}
+.mthanks p{color:var(--muted);font-size:14px}
+.mfail{display:none;font-size:13px;color:#C0453F;margin-top:10px;text-align:center;line-height:1.55}
+.mfail a{color:var(--blue);font-weight:700}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hrow">
+    <div class="logo">
+      <img src="assets/logo.jpg" alt="ЛАЙК ФАСАД" onerror="this.style.display='none'">
+      <div>
+        <div class="logo-name">ЛАЙК <span class="lk">ФАСАД</span></div>
+        <div class="logo-sub">Кровля · Фасады · Заборы</div>
+      </div>
+    </div>
+    <div class="hphone">
+      <a id="phoneTop" href="tel:">8 (962) 077-84-14</a>
+      <div class="region">Абакан · Хакасия · Красноярск</div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <h1>Кровля, фасады и заборы <em>под ключ</em> — с фиксированной сметой</h1>
+    <p>Рассчитайте предварительную стоимость за одну минуту. Точную смету зафиксируем после диагностики объекта — и она не изменится до конца работ.</p>
+    <div class="badges">
+      <div class="badge">Фиксированная смета</div>
+      <div class="badge or">Гарантия 36 месяцев</div>
+      <div class="badge">Работаем по договору</div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="calc">
+  <div class="calc">
+    <div class="tabs" role="tablist">
+      <div class="tab active" data-tab="roof">Кровля</div>
+      <div class="tab" data-tab="facade">Фасад</div>
+      <div class="tab" data-tab="fence">Забор</div>
+    </div>
+
+    <!-- ================= КРОВЛЯ ================= -->
+    <div class="panel active" id="panel-roof">
+      <div class="fld">
+        <label>Площадь кровли, м²</label>
+        <div class="num">
+          <button type="button" data-step="-10">−</button>
+          <input type="number" id="r-area" value="120" min="20" max="600" inputmode="numeric">
+          <button type="button" data-step="10">+</button>
+        </div>
+        <div class="hint">Если не знаете точно — площадь дома по фундаменту × 1,4</div>
+      </div>
+      <div class="grid2">
+        <div class="fld">
+          <label>Покрытие</label>
+          <div class="seg" id="r-cover">
+            <button class="on" data-v="mch">Металлочерепица / профлист</button>
+            <button data-v="gch">Гибкая черепица</button>
+          </div>
+        </div>
+        <div class="fld">
+          <label>Объём работ</label>
+          <div class="seg" id="r-scen">
+            <button class="on" data-v="perest">Замена покрытия</button>
+            <button data-v="snulya">Кровля с нуля (со стропильной системой)</button>
+          </div>
+        </div>
+        <div class="fld">
+          <label>Утепление</label>
+          <div class="seg" id="r-warm">
+            <button class="on" data-v="cold">Холодная кровля</button>
+            <button data-v="warm">Тёплая (утеплённая)</button>
+          </div>
+        </div>
+        <div class="fld">
+          <label>Демонтаж старой кровли</label>
+          <div class="seg" id="r-dem">
+            <button class="on" data-v="yes">Нужен</button>
+            <button data-v="no">Не нужен</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= ФАСАД ================= -->
+    <div class="panel" id="panel-facade">
+      <div class="fld">
+        <label>Тип фасада</label>
+        <div class="seg" id="f-kind">
+          <button class="on" data-v="siding">Сайдинг / фасадные панели</button>
+          <button data-v="wet">Штукатурный «короед»</button>
+        </div>
+      </div>
+
+      <div id="f-siding">
+        <div class="fld">
+          <label>Площадь стен с фронтонами, м²</label>
+          <div class="num">
+            <button type="button" data-step="-10">−</button>
+            <input type="number" id="fs-area" value="140" min="30" max="600" inputmode="numeric">
+            <button type="button" data-step="10">+</button>
+          </div>
+          <div class="hint">Периметр дома × высота стен + фронтоны</div>
+        </div>
+        <div class="grid2">
+          <div class="fld">
+            <label>Утепление</label>
+            <div class="seg" id="fs-ins">
+              <button class="on" data-v="0">Нет</button>
+              <button data-v="50">50 мм</button>
+              <button data-v="100">100 мм</button>
+            </div>
+          </div>
+          <div class="fld">
+            <label>Подшивка карнизов (софиты)</label>
+            <div class="seg" id="fs-soffit">
+              <button class="on" data-v="yes">Да</button>
+              <button data-v="no">Нет</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="f-wet" style="display:none">
+        <div class="fld">
+          <label>Площадь стен под штукатурку, м²</label>
+          <div class="num">
+            <button type="button" data-step="-10">−</button>
+            <input type="number" id="fw-area" value="120" min="30" max="600" inputmode="numeric">
+            <button type="button" data-step="10">+</button>
+          </div>
+        </div>
+        <div class="grid2">
+          <div class="fld">
+            <label>Утепление ППС</label>
+            <div class="seg" id="fw-ins">
+              <button class="on" data-v="no">Нет</button>
+              <button data-v="yes">Да</button>
+            </div>
+          </div>
+          <div class="fld">
+            <label>Цоколь, м² (0 — без цоколя)</label>
+            <div class="num">
+              <button type="button" data-step="-5">−</button>
+              <input type="number" id="fw-plinth" value="0" min="0" max="120" inputmode="numeric">
+              <button type="button" data-step="5">+</button>
+            </div>
+          </div>
+          <div class="fld">
+            <label>Демонтаж старой штукатурки</label>
+            <div class="seg" id="fw-dem">
+              <button class="on" data-v="no">Нет</button>
+              <button data-v="yes">Да</button>
+            </div>
+          </div>
+          <div class="fld">
+            <label>Окраска фасада</label>
+            <div class="seg" id="fw-paint">
+              <button class="on" data-v="no">Нет</button>
+              <button data-v="yes">Да</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= ЗАБОР ================= -->
+    <div class="panel" id="panel-fence">
+      <div class="fld">
+        <label>Длина забора, пог. м</label>
+        <div class="num">
+          <button type="button" data-step="-5">−</button>
+          <input type="number" id="z-len" value="40" min="5" max="500" inputmode="numeric">
+          <button type="button" data-step="5">+</button>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="fld">
+          <label>Материал</label>
+          <div class="seg" id="z-mat">
+            <button class="on" data-v="proflist">Профлист</button>
+            <button data-v="shtak">Евроштакетник</button>
+          </div>
+        </div>
+        <div class="fld">
+          <label>Высота</label>
+          <div class="seg" id="z-h">
+            <button data-v="1.5">1,5 м</button>
+            <button class="on" data-v="1.8">1,8 м</button>
+            <button data-v="2">2,0 м</button>
+          </div>
+        </div>
+        <div class="fld">
+          <label>Ворота</label>
+          <div class="seg" id="z-gate">
+            <button data-v="none">Нет</button>
+            <button class="on" data-v="swing">Распашные</button>
+            <button data-v="slide">Откатные</button>
+          </div>
+        </div>
+        <div class="fld">
+          <label>Калитка</label>
+          <div class="seg" id="z-wicket">
+            <button data-v="0">Нет</button>
+            <button class="on" data-v="1">1 шт</button>
+            <button data-v="2">2 шт</button>
+          </div>
+        </div>
+        <div class="fld">
+          <label>Демонтаж старого забора</label>
+          <div class="seg" id="z-dem">
+            <button class="on" data-v="no">Нет</button>
+            <button data-v="yes">Да, по всей длине</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= РЕЗУЛЬТАТ ================= -->
+    <div style="padding:0 22px 26px">
+      <div class="result">
+        <div class="rlabel">Предварительная стоимость под ключ</div>
+        <div class="rprice" id="price">—</div>
+        <div class="rnote">≈ предварительно · работы + материалы · точная смета после диагностики объекта</div>
+      </div>
+      <button class="cta" id="openForm">Получить точный расчёт</button>
+      <div class="priv">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ГАЛЕРЕЯ ДО/ПОСЛЕ ================= -->
+<section class="wrap gallery" id="gallery">
+  <h2 class="section-title">Наши объекты: до и после</h2>
+  <p class="section-sub">Потяните ползунок, чтобы сравнить, как выглядел дом до и после работ.</p>
+  <div class="ba" id="ba">
+    <img id="baBefore" src="" alt="До">
+    <div class="after" id="baAfterWrap"><img id="baAfter" src="" alt="После"></div>
+    <div class="divider" id="baDiv"></div>
+    <div class="knob" id="baKnob">⇄</div>
+    <div class="tag b">До</div>
+    <div class="tag a">После</div>
+    <input type="range" id="baRange" min="0" max="100" value="50">
+  </div>
+  <div class="gnav">
+    <div class="glabel" id="gLabel"></div>
+    <div class="gbtns">
+      <button id="gPrev" aria-label="Предыдущий объект">←</button>
+      <button id="gNext" aria-label="Следующий объект">→</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= НАШИ ОБЪЕКТЫ ================= -->
+<section class="wrap objects">
+  <h2 class="section-title">Наши объекты</h2>
+  <p class="section-sub">Реальные дома в Абакане и Хакасии, которые мы обшили и перекрыли.</p>
+  <div class="ogrid">
+    <img src="photos/obj1.jpg" alt="Металлосайдинг под дерево" loading="lazy">
+    <img src="photos/obj2.jpg" alt="Дом с фасадом под ключ" loading="lazy">
+    <img src="photos/obj3.jpg" alt="Фасадные панели белый кирпич" loading="lazy">
+    <img src="photos/obj4.jpg" alt="Одноэтажный дом, фасадные панели" loading="lazy">
+    <img src="photos/obj5.jpg" alt="Фасад панелями, зимний монтаж" loading="lazy">
+    <img src="photos/obj6.jpg" alt="Серые панели с кирпичными вставками" loading="lazy">
+  </div>
+</section>
+
+<!-- ================= ДОВЕРИЕ ================= -->
+<section class="wrap trust">
+  <h2 class="section-title">Почему с нами спокойно</h2>
+  <p class="section-sub">Работаем по договору. На объекте — наш прораб, монтаж ведут проверенные бригады.</p>
+  <div class="tgrid">
+    <div class="tcard">
+      <div class="tnum">01</div>
+      <h3>Фиксированная смета</h3>
+      <p>Цена в договоре не меняется до конца работ. Никаких скрытых доплат «по ходу дела».</p>
+    </div>
+    <div class="tcard">
+      <div class="tnum">02</div>
+      <h3>Диагностика — бесплатно при заключении договора</h3>
+      <p>Инженер делает замеры и проверяет узлы. Стоимость диагностики полностью вычитается из суммы договора.</p>
+    </div>
+    <div class="tcard">
+      <div class="tnum">03</div>
+      <h3>Гарантия 36 месяцев</h3>
+      <p>Письменная гарантия на монтажные работы — три года. Приезжаем и устраняем за свой счёт.</p>
+    </div>
+    <div class="tcard">
+      <div class="tnum">04</div>
+      <h3>Прораб на объекте</h3>
+      <p>Контроль каждого этапа: от закупки и логистики до приёмки. Вы всегда знаете, что происходит.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ШАГИ ================= -->
+<section class="wrap steps">
+  <h2 class="section-title">Как мы работаем</h2>
+  <div class="sgrid">
+    <div class="scard">
+      <div class="sn">1</div>
+      <h3>Заявка и консультация</h3>
+      <p>Оставьте телефон — перезвоним в течение дня, уточним задачу и сориентируем по цене.</p>
+    </div>
+    <div class="scard">
+      <div class="sn">2</div>
+      <h3>Диагностика и замер</h3>
+      <p>Выезд инженера на объект: замеры, проверка узлов, фото-отчёт. Стоимость диагностики вычитается из договора — для вас она бесплатна.</p>
+    </div>
+    <div class="scard">
+      <div class="sn">3</div>
+      <h3>Фиксированная смета и договор</h3>
+      <p>Смета «под ключ»: материалы, доставка, монтаж. Цена фиксируется в договоре.</p>
+    </div>
+    <div class="scard">
+      <div class="sn">4</div>
+      <h3>Монтаж и гарантия</h3>
+      <p>Бригада работает под контролем прораба. Сдача объекта и гарантия 36 месяцев.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap frow">
+    <div class="fcol">
+      <div class="fname">ЛАЙК <span class="lk">ФАСАД</span></div>
+      <p>ИП Куранов Валентин Васильевич<br>ИНН 245511320427 · ОГРНИП 323246800090262<br>Кровельные, фасадные работы и заборы под ключ.<br>Абакан · Республика Хакасия · Красноярский край</p>
+    </div>
+    <div class="fcol" style="text-align:right">
+      <div class="fphone"><a id="phoneBottom" href="tel:">8 (962) 077-84-14</a></div>
+      <p style="margin-top:12px"><a id="mailBottom" href="mailto:">i@kuranov-7.ru</a><br>Ежедневно с 9:00 до 20:00 · <a href="https://vk.com/likefasad">ВКонтакте</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= МОДАЛКА ================= -->
+<div class="modal" id="modal">
+  <div class="mbox">
+    <button class="mclose" id="mclose">×</button>
+    <div id="mform">
+      <h3>Точный расчёт по вашим параметрам</h3>
+      <div class="msub">Оставьте телефон — перезвоним в течение дня, уточним детали и подготовим смету.</div>
+      <div class="msummary" id="msummary"></div>
+      <input type="text" id="in-name" placeholder="Ваше имя" autocomplete="name">
+      <input type="tel" id="in-phone" placeholder="Телефон: +7 ___ ___-__-__" autocomplete="tel" inputmode="tel">
+      <input type="checkbox" id="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+      <button class="msend" id="msend">Отправить заявку</button>
+      <div class="mfail" id="mfail"></div>
+    </div>
+    <div class="mthanks" id="mthanks">
+      <div class="tick">✓</div>
+      <h3 style="color:var(--blue-deep)">Спасибо! Заявка принята</h3>
+      <p>Перезвоним в течение дня.<br>Если срочно — звоните: <a id="phoneThanks" href="tel:" style="color:var(--orange);font-weight:800">8 (962) 077-84-14</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ================= ЯДРО РАСЧЁТА (чистые функции, без DOM) ================= -->
+<script id="calc-core">
+/* Ставки откалиброваны движками скиллов ЛАЙК ФАСАД (roofing / facade / wet-facade / zabor), июль 2026.
+   Все числа — КЛИЕНТСКИЕ цены под ключ. Внутренних цен (закупка/маржа) в этом файле нет. */
+var RATES = {
+  roof: {
+    /* [ставка ₽/м², фикс ₽] — линейный фит по движку roofing-estimator, ТИПОВОЙ объект
+       (без обшивки коробов, дымохода, снегозадержателей, огнебио; водосток: желоба + 2 трубы).
+       Доп. элементы уточняются на диагностике. Вкл. демонтаж. */
+    mch: { perest: { cold: [4020, 38000], warm: [5105, 39000] },
+           snulya: { cold: [6685, 41600], warm: [7779, 41000] } },
+    gch: { perest: { cold: [6738, 43300], warm: [7826, 44000] },
+           snulya: { cold: [9427, 45800], warm: [10527, 44000] } },
+    /* Г/ч: пересчитано по исправленному прайсу (скоба снегозадерживающая 66 ₽, металл-доборка маржа 48%) */
+    demDelta: { mch: 650, gch: 660 },   /* ₽/м², вычитается если демонтаж не нужен */
+    range: [0.90, 1.15]
+  },
+  siding: { /* фит по движку facade-estimator: turnkey = fix + rate × S(стены+фронтоны) */
+    eco: [3074, 66000], prem: [4240, 68000],
+    ins: { "0": 0, "50": 1159, "100": 1717 },  /* ₽/м² к обоим краям вилки */
+    noSoffit: 615                                /* ₽/м², вычитается если софиты не нужны */
+  },
+  wet: { base: 3660, fix: 12600, ins: 1600, plinth: 3800, dem: 690, musor: 8400, paint: 2145,
+         range: [0.95, 1.15] },
+  fence: {
+    proflist: {
+      eco:  { m2: 490, planka: 420, sheetW: 1.15, fullW: 1.20 },
+      prem: { m2: 770, planka: 540, sheetW: 1.10, fullW: 1.10 }
+    },
+    shtak: { eco: { pm: 167.08 }, prem: { pm: 183.46 } },
+    workRate: { proflist: 2500, shtak: 2800 }
+  }
+};
+
+function roundK(v){ return Math.round(v/1000)*1000; }
+
+function calcRoof(S, cover, scen, warm, dem){
+  var f = RATES.roof[cover][scen][warm];
+  var base = f[1] + f[0]*S;
+  if(dem === 'no') base -= RATES.roof.demDelta[cover]*S;
+  return [roundK(base*RATES.roof.range[0]), roundK(base*RATES.roof.range[1])];
+}
+
+function calcSiding(S, ins, soffit){
+  var e = RATES.siding.eco, p = RATES.siding.prem;
+  var add = RATES.siding.ins[ins]*S - (soffit==='no' ? RATES.siding.noSoffit*S : 0);
+  return [roundK(e[1] + e[0]*S + add), roundK(p[1] + p[0]*S + add)];
+}
+
+function calcWet(S, ins, plinthM2, dem, paint){
+  var w = RATES.wet;
+  var base = w.fix + w.base*S
+    + (ins==='yes' ? w.ins*S : 0)
+    + plinthM2*w.plinth
+    + (dem==='yes' ? w.dem*S + w.musor : 0)
+    + (paint==='yes' ? w.paint*S : 0);
+  return [roundK(base*w.range[0]), roundK(base*w.range[1])];
+}
+
+function stdH(h){
+  var std=[1.5,1.8,2.0,2.2];
+  for(var i=0;i<std.length;i++){ if(h<=std[i]+1e-9) return std[i]; }
+  return 2.2;
+}
+
+function calcFencePkg(L,H,material,pkg,gSwing,gSlide,wickets,demPm){
+  H = stdH(H);
+  var F = RATES.fence, mat = 0;
+  var posts = Math.ceil(L/2.5)+2, lags = Math.ceil(2*L/6)+2;
+  mat += posts*1250 + lags*1350;
+  var fillM2;
+  if(material==='proflist'){
+    var p = F.proflist[pkg];
+    var sheets = Math.ceil(L/p.sheetW);
+    var area = sheets*p.fullW*H;
+    mat += area*p.m2;
+    mat += (Math.ceil(L/2)+1)*p.planka;
+    var nRaw = area*8*1.10;
+    mat += (pkg==='eco') ? Math.ceil(nRaw/1000)*1000*1.37 : nRaw*2.03;
+    mat += 630;
+    fillM2 = p.m2;
+  } else {
+    var s = F.shtak[pkg];
+    var nSht = Math.ceil(L*1000/186*1.02);
+    mat += nSht*s.pm*H;
+    mat += (pkg==='eco') ? Math.ceil(nSht*4*1.10/250)*1163 : nSht*4*1.10*2.03;
+    fillM2 = s.pm*(1000/186);
+  }
+  mat += Math.ceil(Math.max(L,1)/50)*1150 + 80 + 60;          /* покраска каркаса */
+  mat += Math.ceil(posts*0.16)*890 + 6000;                     /* цемент + ПГС */
+  if(gSwing) mat += gSwing*(2*2700 + 3*2500 + 4.0*H*fillM2 + 1320 + 420 + 600);
+  if(wickets) mat += wickets*(2700 + 2*2500*0.75 + 1.1*H*fillM2 + 440 + 1340 + 850);
+  if(gSlide) mat += gSlide*(5400 + 5*2500 + 5.0*H*fillM2 + 14450);
+  if(gSwing||gSlide||wickets) mat += 2500;                     /* сварочные расходники */
+  var works = L*F.workRate[material] + demPm*300
+    + gSwing*26000 + wickets*15000 + gSlide*(46000+30000);
+  var dpr = L<=50 ? 7000 : L<=100 ? 11000 : L<=200 ? 18000 : 23000;
+  var nakl = works * (L<=30 ? 0.08 : L<=80 ? 0.06 : 0.05);
+  var musor = demPm>0 ? 5500 : 0;
+  return mat + works + dpr + nakl + musor;
+}
+
+function calcFence(L,H,material,gate,wickets,dem){
+  var gSwing = gate==='swing'?1:0, gSlide = gate==='slide'?1:0;
+  var demPm = dem==='yes' ? L : 0;
+  /* «от» = Эконом с люфтом −5% (скидочный запас менеджера), «до» = Премиум */
+  return [ roundK(calcFencePkg(L,H,material,'eco',gSwing,gSlide,wickets,demPm)*0.95),
+           roundK(calcFencePkg(L,H,material,'prem',gSwing,gSlide,wickets,demPm)) ];
+}
+if (typeof module !== 'undefined') module.exports = { calcRoof: calcRoof, calcSiding: calcSiding, calcWet: calcWet, calcFence: calcFence };
+</script>
+
+<!-- ================= UI ================= -->
+<script>
+/* ============ КОНФИГ — правится в одном месте ============ */
+var CONFIG = {
+  PHONE_DISPLAY: '8 (962) 077-84-14',
+  PHONE_TEL: '+79620778414',
+  EMAIL: 'i@kuranov-7.ru',
+  WEB3FORMS_KEY: 'f1e73457-4d66-4521-ba20-fc2be63b7b96'   /* Web3Forms → заявки на i@kuranov-7.ru */
+};
+
+/* ============ ФОТО «ДО/ПОСЛЕ» ============
+   Новая пара: файлы ba5-before.jpg и ba5-after.jpg в папку photos/, плюс строка в массив ниже. */
+var PHOTOS = [
+  { before: 'photos/ba1-before.jpg', after: 'photos/ba1-after.jpg', label: 'Фасад под ключ: от стройки до белоснежного дома' },
+  { before: 'photos/ba2-before.jpg', after: 'photos/ba2-after.jpg', label: 'Металлосайдинг: дом из блоков' },
+  { before: 'photos/ba3-before.jpg', after: 'photos/ba3-after.jpg', label: 'Фасад + кровля под ключ' },
+  { before: 'photos/ba4-before.jpg', after: 'photos/ba4-after.jpg', label: 'Кровля: перестилка профлистом' }
+];
+
+document.getElementById('phoneTop').href = 'tel:'+CONFIG.PHONE_TEL;
+document.getElementById('phoneBottom').href = 'tel:'+CONFIG.PHONE_TEL;
+document.getElementById('phoneThanks').href = 'tel:'+CONFIG.PHONE_TEL;
+document.getElementById('phoneTop').textContent = CONFIG.PHONE_DISPLAY;
+document.getElementById('phoneBottom').textContent = CONFIG.PHONE_DISPLAY;
+document.getElementById('phoneThanks').textContent = CONFIG.PHONE_DISPLAY;
+document.getElementById('mailBottom').href = 'mailto:'+CONFIG.EMAIL;
+document.getElementById('mailBottom').textContent = CONFIG.EMAIL;
+
+/* ============ галерея до/после ============ */
+(function(){
+  if(!PHOTOS.length) return;
+  document.getElementById('gallery').classList.add('show');
+  var i = 0;
+  var before = document.getElementById('baBefore'), after = document.getElementById('baAfter');
+  var range = document.getElementById('baRange');
+  function show(n){
+    i = (n + PHOTOS.length) % PHOTOS.length;
+    before.src = PHOTOS[i].before;
+    after.src = PHOTOS[i].after;
+    document.getElementById('gLabel').textContent = (PHOTOS[i].label||'') + ' · ' + (i+1) + ' / ' + PHOTOS.length;
+    range.value = 50; slide(50);
+  }
+  function slide(v){
+    document.getElementById('baAfterWrap').style.clipPath = 'inset(0 0 0 '+v+'%)';
+    document.getElementById('baDiv').style.left = v+'%';
+    document.getElementById('baKnob').style.left = v+'%';
+  }
+  range.addEventListener('input', function(){ slide(this.value); });
+  document.getElementById('gPrev').addEventListener('click', function(){ show(i-1); });
+  document.getElementById('gNext').addEventListener('click', function(){ show(i+1); });
+  show(0);
+})();
+
+/* сегменты */
+document.querySelectorAll('.seg').forEach(function(seg){
+  seg.addEventListener('click', function(e){
+    var b = e.target.closest('button'); if(!b) return;
+    seg.querySelectorAll('button').forEach(function(x){ x.classList.remove('on'); });
+    b.classList.add('on');
+    if(seg.id==='f-kind'){
+      document.getElementById('f-siding').style.display = (segVal('f-kind')==='siding')?'':'none';
+      document.getElementById('f-wet').style.display = (segVal('f-kind')==='wet')?'':'none';
+    }
+    recalc();
+  });
+});
+function segVal(id){ var b=document.querySelector('#'+id+' button.on'); return b?b.dataset.v:null; }
+
+/* степперы */
+document.querySelectorAll('.num').forEach(function(numEl){
+  var input = numEl.querySelector('input');
+  numEl.querySelectorAll('button').forEach(function(b){
+    b.addEventListener('click', function(){
+      var v = (parseFloat(input.value)||0) + parseFloat(b.dataset.step);
+      var min = parseFloat(input.min)||0, max = parseFloat(input.max)||9999;
+      input.value = Math.min(max, Math.max(min, v));
+      recalc();
+    });
+  });
+  input.addEventListener('input', recalc);
+});
+
+/* табы */
+var activeTab = 'roof';
+document.querySelectorAll('.tab').forEach(function(t){
+  t.addEventListener('click', function(){
+    document.querySelectorAll('.tab').forEach(function(x){ x.classList.remove('active'); });
+    document.querySelectorAll('.panel').forEach(function(x){ x.classList.remove('active'); });
+    t.classList.add('active');
+    activeTab = t.dataset.tab;
+    document.getElementById('panel-'+({roof:'roof',facade:'facade',fence:'fence'})[activeTab]).classList.add('active');
+    recalc();
+  });
+});
+
+function clamp(id, lo, hi, def){
+  var v = parseFloat(document.getElementById(id).value);
+  if(isNaN(v)) return def;
+  return Math.min(hi, Math.max(lo, v));
+}
+function fmt(v){ return v.toLocaleString('ru-RU'); }
+
+var lastCalc = null;
+function recalc(){
+  var res, summary;
+  if(activeTab==='roof'){
+    var S = clamp('r-area', 20, 600, 120);
+    res = calcRoof(S, segVal('r-cover'), segVal('r-scen'), segVal('r-warm'), segVal('r-dem'));
+    summary = 'Кровля · '+S+' м² · '
+      + (segVal('r-cover')==='mch'?'металлочерепица/профлист':'гибкая черепица')+' · '
+      + (segVal('r-scen')==='perest'?'замена покрытия':'с нуля со стропильной системой')+' · '
+      + (segVal('r-warm')==='warm'?'тёплая':'холодная')+' · демонтаж: '
+      + (segVal('r-dem')==='yes'?'да':'нет');
+  } else if(activeTab==='facade'){
+    if(segVal('f-kind')==='siding'){
+      var S2 = clamp('fs-area', 30, 600, 140);
+      res = calcSiding(S2, segVal('fs-ins'), segVal('fs-soffit'));
+      summary = 'Фасад (сайдинг/панели) · '+S2+' м² · утепление: '
+        + (segVal('fs-ins')==='0'?'нет':segVal('fs-ins')+' мм')
+        + ' · софиты: '+(segVal('fs-soffit')==='yes'?'да':'нет');
+    } else {
+      var S3 = clamp('fw-area', 30, 600, 120);
+      var pl = clamp('fw-plinth', 0, 120, 0);
+      res = calcWet(S3, segVal('fw-ins'), pl, segVal('fw-dem'), segVal('fw-paint'));
+      summary = 'Фасад (штукатурный «короед») · '+S3+' м²'
+        + (pl>0 ? ' · цоколь '+pl+' м²' : '')
+        + ' · утепление ППС: '+(segVal('fw-ins')==='yes'?'да':'нет')
+        + ' · демонтаж: '+(segVal('fw-dem')==='yes'?'да':'нет')
+        + ' · окраска: '+(segVal('fw-paint')==='yes'?'да':'нет');
+    }
+  } else {
+    var L = clamp('z-len', 5, 500, 40);
+    var W = parseInt(segVal('z-wicket'),10)||0;
+    res = calcFence(L, parseFloat(segVal('z-h')), segVal('z-mat'), segVal('z-gate'), W, segVal('z-dem'));
+    summary = 'Забор · '+L+' пог.м · высота '+segVal('z-h').replace('.',',')+' м · '
+      + (segVal('z-mat')==='proflist'?'профлист':'евроштакетник ELLIPSE')
+      + ' · ворота: '+({none:'нет',swing:'распашные',slide:'откатные'})[segVal('z-gate')]
+      + ' · калитка: '+(W||'нет')
+      + ' · демонтаж: '+(segVal('z-dem')==='yes'?'да':'нет');
+  }
+  lastCalc = { range: res, summary: summary };
+  document.getElementById('price').textContent = 'от '+fmt(res[0])+' до '+fmt(res[1])+' ₽';
+}
+recalc();
+
+/* ============ модалка и отправка ============ */
+var modal = document.getElementById('modal');
+document.getElementById('openForm').addEventListener('click', function(){
+  document.getElementById('msummary').textContent = lastCalc.summary+' · вилка: '+fmt(lastCalc.range[0])+'–'+fmt(lastCalc.range[1])+' ₽';
+  document.getElementById('mform').style.display = '';
+  document.getElementById('mthanks').style.display = 'none';
+  document.getElementById('mfail').style.display = 'none';
+  modal.classList.add('open');
+});
+document.getElementById('mclose').addEventListener('click', function(){ modal.classList.remove('open'); });
+modal.addEventListener('click', function(e){ if(e.target===modal) modal.classList.remove('open'); });
+
+document.getElementById('msend').addEventListener('click', async function(){
+  var nameEl = document.getElementById('in-name'), phoneEl = document.getElementById('in-phone');
+  var name = nameEl.value.trim(), phone = phoneEl.value.trim();
+  var digits = phone.replace(/\D/g,'');
+  nameEl.classList.toggle('err', !name);
+  phoneEl.classList.toggle('err', digits.length < 10);
+  if(!name || digits.length < 10) return;
+  if(document.getElementById('botcheck').checked) return;
+
+  var direction = lastCalc.summary.split(' · ')[0];
+  var body = {
+    access_key: CONFIG.WEB3FORMS_KEY,
+    subject: 'Заявка с сайта — '+direction+' — '+name,
+    from_name: 'Сайт ЛАЙК ФАСАД',
+    'Имя': name,
+    'Телефон': phone,
+    'Параметры': lastCalc.summary,
+    'Вилка': fmt(lastCalc.range[0])+' – '+fmt(lastCalc.range[1])+' ₽',
+    botcheck: false
+  };
+  var btn = this;
+  btn.disabled = true; btn.textContent = 'Отправляем…';
+  var ok = false;
+  if(CONFIG.WEB3FORMS_KEY){
+    try{
+      var r = await fetch('https://api.web3forms.com/submit', {
+        method:'POST', headers:{'Content-Type':'application/json',Accept:'application/json'},
+        body: JSON.stringify(body)
+      });
+      var j = await r.json();
+      ok = !!j.success;
+    }catch(e){ ok = false; }
+  }
+  btn.disabled = false; btn.textContent = 'Отправить заявку';
+  if(ok){
+    document.getElementById('mform').style.display = 'none';
+    document.getElementById('mthanks').style.display = 'block';
+  } else {
+    var f = document.getElementById('mfail');
+    f.innerHTML = 'Не получилось отправить автоматически.<br>Позвоните нам: <a href="tel:'+CONFIG.PHONE_TEL+'">'+CONFIG.PHONE_DISPLAY+'</a> или напишите на <a href="mailto:'+CONFIG.EMAIL+'">'+CONFIG.EMAIL+'</a>';
+    f.style.display = 'block';
+  }
+});
+</script>
+</body>
+</html>
