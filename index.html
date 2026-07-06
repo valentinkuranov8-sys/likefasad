@@ -119,6 +119,21 @@ header{padding:16px 0;background:#fff;border-bottom:1px solid var(--line);positi
 .ogrid img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;box-shadow:0 8px 22px rgba(11,46,85,.10);transition:.25s;cursor:pointer}
 .ogrid img:hover{transform:scale(1.02);box-shadow:0 16px 34px rgba(11,46,85,.18)}
 
+/* ---------- reviews ---------- */
+.reviews{margin-top:72px;display:none}
+.reviews.show{display:block}
+.rsum{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.rsum .rchip{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 16px;font-size:14px;font-weight:700;color:var(--blue-deep);box-shadow:0 4px 12px rgba(11,46,85,.06)}
+.rsum .rchip .stars{color:var(--orange);letter-spacing:2px}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:24px}
+.rcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 6px 18px rgba(11,46,85,.05);display:flex;flex-direction:column}
+.rcard .rhead{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+.rcard .rname{font-weight:700;color:var(--blue-deep);font-size:14.5px}
+.rcard .rsrc{font-size:11px;font-weight:800;letter-spacing:.5px;padding:4px 9px;border-radius:6px;background:rgba(0,90,157,.08);color:var(--blue)}
+.rcard .rstars{color:var(--orange);font-size:13px;letter-spacing:2px;margin-bottom:8px}
+.rcard .rtext{font-size:13.5px;color:var(--muted);line-height:1.55}
+.rcard .rdeal{margin-top:10px;font-size:11.5px;color:var(--muted2)}
+
 /* ---------- trust ---------- */
 .section-title{font-size:clamp(24px,4.5vw,32px);color:var(--blue-deep);font-weight:800;margin:0 0 8px}
 .section-sub{color:var(--muted);max-width:620px}
@@ -321,14 +336,8 @@ footer{margin-top:80px;background:var(--blue-deep);color:#fff;padding:38px 0 44p
               <button data-v="yes">Да</button>
             </div>
           </div>
-          <div class="fld">
-            <label>Окраска фасада</label>
-            <div class="seg" id="fw-paint">
-              <button class="on" data-v="no">Нет</button>
-              <button data-v="yes">Да</button>
-            </div>
-          </div>
         </div>
+        <div class="hint" style="margin-top:-6px;margin-bottom:14px">Окраску фасада обсудим на диагностике — красить короед не обязательно.</div>
       </div>
     </div>
 
@@ -431,6 +440,16 @@ footer{margin-top:80px;background:var(--blue-deep);color:#fff;padding:38px 0 44p
     <img src="photos/obj5.jpg" alt="Фасад панелями, зимний монтаж" loading="lazy">
     <img src="photos/obj6.jpg" alt="Серые панели с кирпичными вставками" loading="lazy">
   </div>
+</section>
+
+<!-- ================= ОТЗЫВЫ ================= -->
+<section class="wrap reviews" id="reviews">
+  <h2 class="section-title">Отзывы клиентов</h2>
+  <div class="rsum">
+    <div class="rchip"><span class="stars">★★★★★</span> Авито 5,0 · 26 отзывов</div>
+    <div class="rchip"><span class="stars">★★★★★</span> 2ГИС 5,0</div>
+  </div>
+  <div class="rgrid" id="rgrid"></div>
 </section>
 
 <!-- ================= ДОВЕРИЕ ================= -->
@@ -545,8 +564,8 @@ var RATES = {
     ins: { "0": 0, "50": 1159, "100": 1717 },  /* ₽/м² к обоим краям вилки */
     noSoffit: 615                                /* ₽/м², вычитается если софиты не нужны */
   },
-  wet: { base: 3660, fix: 12600, ins: 1600, plinth: 3800, dem: 690, musor: 8400, paint: 2145,
-         range: [0.95, 1.15] },
+  wet: { base: 3480, fix: 12600, ins: 1600, plinth: 3800, dem: 690, musor: 8400,
+         range: [0.90, 1.15] },  /* база: слой смеси 10 мм; окраска и толстый слой — на диагностике */
   fence: {
     proflist: {
       eco:  { m2: 490, planka: 420, sheetW: 1.15, fullW: 1.20 },
@@ -572,13 +591,12 @@ function calcSiding(S, ins, soffit){
   return [roundK(e[1] + e[0]*S + add), roundK(p[1] + p[0]*S + add)];
 }
 
-function calcWet(S, ins, plinthM2, dem, paint){
+function calcWet(S, ins, plinthM2, dem){
   var w = RATES.wet;
   var base = w.fix + w.base*S
     + (ins==='yes' ? w.ins*S : 0)
     + plinthM2*w.plinth
-    + (dem==='yes' ? w.dem*S + w.musor : 0)
-    + (paint==='yes' ? w.paint*S : 0);
+    + (dem==='yes' ? w.dem*S + w.musor : 0);
   return [roundK(base*w.range[0]), roundK(base*w.range[1])];
 }
 
@@ -653,6 +671,42 @@ var PHOTOS = [
   { before: 'photos/ba3-before.jpg', after: 'photos/ba3-after.jpg', label: 'Фасад + кровля под ключ' },
   { before: 'photos/ba4-before.jpg', after: 'photos/ba4-after.jpg', label: 'Кровля: перестилка профлистом' }
 ];
+
+/* ============ ОТЗЫВЫ (Авито / 2ГИС) — дословные выдержки ============ */
+var REVIEWS = [
+  { name: 'Вероника Бакланова', src: 'Авито', deal: 'Фасадные работы, Черногорск',
+    text: 'Фасадные работы выполнены раньше срока, всё прошло отлично, спасибо! Отдельная благодарность Ивану и Андрею!' },
+  { name: 'Дарья Каснер', src: 'Авито', deal: 'Фасадные работы, Абакан',
+    text: 'Выполнили работы на все пять звёздочек. Видно, что работают профессионалы своего дела. Оперативно организовали выезд для замера, помогли определиться с материалами… Всё сделали вовремя и в срок, работой довольны!' },
+  { name: 'Сергей Филиппов', src: 'Авито', deal: 'Вентилируемый фасад',
+    text: 'Оперативно приехал, произвёл замер, рассчитал материал и предоставил подробную смету… Ценю профессионализм, внимательное отношение к деталям и дружелюбный подход к клиентам.' },
+  { name: 'Светлана', src: 'Авито', deal: 'Кровельные работы',
+    text: 'Оперативно приехали, сняли замеры, всё рассказали. Отлично сработали, слив сделан аккуратно, цена и сроки — всё как оговаривали, расчёт предоставили.' },
+  { name: 'Анастасия', src: 'Авито', deal: 'Замена кровли, Черногорск',
+    text: 'Рекомендую всем, кто желает поменять кровлю: ребята работали слаженно, очень быстро и качественно. Всё сделано на совесть, спасибо большое!' },
+  { name: 'Светлана', src: 'Авито', deal: 'Фасад, сложный объект',
+    text: 'Объект был сложным, со множеством углов — всё сделали отлично, в кратчайшие сроки, аккуратно, быстро, качественно. Всем рекомендую!' },
+  { name: 'Иван Ефремов', src: '2ГИС', deal: 'Фасадные работы',
+    text: 'Заявка была быстро принята, нас проконсультировали и заключили договор. Работа выполнена качественно, быстро, аккуратно. Работники вежливые, пунктуальные, мастера своего дела!' },
+  { name: 'Никита Гончаренко', src: '2ГИС', deal: 'Материалы с доставкой',
+    text: 'Обслуживание на высшем уровне. Качество материалов отличное — всё соответствует заявленным характеристикам. Доставка быстрая, без задержек. Рекомендую всем, кто ценит надёжность!' }
+];
+(function(){
+  if(!REVIEWS.length) return;
+  document.getElementById('reviews').classList.add('show');
+  var g = document.getElementById('rgrid');
+  REVIEWS.forEach(function(r){
+    var d = document.createElement('div');
+    d.className = 'rcard';
+    d.innerHTML = '<div class="rhead"><span class="rname"></span><span class="rsrc"></span></div>'
+      + '<div class="rstars">★★★★★</div><div class="rtext"></div><div class="rdeal"></div>';
+    d.querySelector('.rname').textContent = r.name;
+    d.querySelector('.rsrc').textContent = r.src;
+    d.querySelector('.rtext').textContent = '«' + r.text + '»';
+    d.querySelector('.rdeal').textContent = 'Сделка состоялась · ' + r.deal;
+    g.appendChild(d);
+  });
+})();
 
 document.getElementById('phoneTop').href = 'tel:'+CONFIG.PHONE_TEL;
 document.getElementById('phoneBottom').href = 'tel:'+CONFIG.PHONE_TEL;
@@ -758,12 +812,11 @@ function recalc(){
     } else {
       var S3 = clamp('fw-area', 30, 600, 120);
       var pl = clamp('fw-plinth', 0, 120, 0);
-      res = calcWet(S3, segVal('fw-ins'), pl, segVal('fw-dem'), segVal('fw-paint'));
+      res = calcWet(S3, segVal('fw-ins'), pl, segVal('fw-dem'));
       summary = 'Фасад (штукатурный «короед») · '+S3+' м²'
         + (pl>0 ? ' · цоколь '+pl+' м²' : '')
         + ' · утепление ППС: '+(segVal('fw-ins')==='yes'?'да':'нет')
-        + ' · демонтаж: '+(segVal('fw-dem')==='yes'?'да':'нет')
-        + ' · окраска: '+(segVal('fw-paint')==='yes'?'да':'нет');
+        + ' · демонтаж: '+(segVal('fw-dem')==='yes'?'да':'нет');
     }
   } else {
     var L = clamp('z-len', 5, 500, 40);
