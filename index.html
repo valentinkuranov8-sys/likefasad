@@ -119,6 +119,16 @@ header{padding:16px 0;background:#fff;border-bottom:1px solid var(--line);positi
 .ogrid img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;box-shadow:0 8px 22px rgba(11,46,85,.10);transition:.25s;cursor:pointer}
 .ogrid img:hover{transform:scale(1.02);box-shadow:0 16px 34px rgba(11,46,85,.18)}
 
+/* ---------- halva ---------- */
+.halva{margin-top:26px}
+.halva-box{display:flex;align-items:center;gap:18px;flex-wrap:wrap;background:linear-gradient(100deg,var(--blue) 0%,var(--blue-dark) 100%);border-radius:16px;padding:24px 26px;color:#fff;box-shadow:0 18px 44px rgba(0,62,112,.25)}
+.halva-pct{font-size:44px;font-weight:800;color:#fff;background:var(--orange);border-radius:12px;padding:8px 18px;line-height:1;white-space:nowrap}
+.halva-txt{flex:1;min-width:220px}
+.halva-txt h3{font-size:19px;font-weight:800;margin-bottom:5px}
+.halva-txt p{font-size:13.5px;color:#D6E4F2}
+.halva-btn{background:#fff;color:var(--blue-dark);font-weight:800;font-size:14px;padding:13px 22px;border-radius:10px;border:none;cursor:pointer;transition:.2s;white-space:nowrap}
+.halva-btn:hover{background:var(--orange);color:#fff}
+
 /* ---------- lightbox ---------- */
 .lightbox{position:fixed;inset:0;background:rgba(8,18,30,.9);display:none;align-items:center;justify-content:center;z-index:60;padding:20px;cursor:zoom-out}
 .lightbox.open{display:flex;animation:fade .2s ease}
@@ -216,9 +226,9 @@ footer{margin-top:80px;background:var(--blue-deep);color:#fff;padding:38px 0 44p
     <h1>Кровля, фасады и заборы <em>под ключ</em> — с фиксированной сметой</h1>
     <p>Рассчитайте предварительную стоимость за одну минуту. Точную смету зафиксируем после диагностики объекта — и она не изменится до конца работ.</p>
     <div class="badges">
+      <div class="badge or">Рассрочка 0% на 24 мес — карта «Халва»</div>
       <div class="badge">Фиксированная смета</div>
-      <div class="badge or">Гарантия 36 месяцев</div>
-      <div class="badge">Работаем по договору</div>
+      <div class="badge">Гарантия 36 месяцев</div>
     </div>
   </div>
 </section>
@@ -412,6 +422,18 @@ footer{margin-top:80px;background:var(--blue-deep);color:#fff;padding:38px 0 44p
       <button class="cta" id="openForm">Получить точный расчёт</button>
       <div class="priv">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</div>
     </div>
+  </div>
+</section>
+
+<!-- ================= РАССРОЧКА ХАЛВА ================= -->
+<section class="wrap halva">
+  <div class="halva-box">
+    <div class="halva-pct">0%</div>
+    <div class="halva-txt">
+      <h3>Рассрочка 0% на 24 месяца по карте «Халва»</h3>
+      <p>Разбейте стоимость кровли, фасада или забора на равные платежи без переплат. Подробности и оформление — у менеджера.</p>
+    </div>
+    <button class="halva-btn" id="halvaBtn">Узнать про рассрочку</button>
   </div>
 </section>
 
@@ -880,6 +902,16 @@ document.getElementById('openForm').addEventListener('click', function(){
   modal.classList.add('open');
 });
 document.getElementById('mclose').addEventListener('click', function(){ modal.classList.remove('open'); });
+document.getElementById('halvaBtn').addEventListener('click', function(){
+  lastCalc = lastCalc || { range:[0,0], summary:'' };
+  if(lastCalc.summary.indexOf('РАССРОЧКА') !== 0)
+    lastCalc = { range: lastCalc.range, summary: 'РАССРОЧКА «Халва» · ' + lastCalc.summary };
+  document.getElementById('msummary').textContent = 'Интересует рассрочка 0% по карте «Халва» · ' + lastCalc.summary.replace('РАССРОЧКА «Халва» · ','');
+  document.getElementById('mform').style.display = '';
+  document.getElementById('mthanks').style.display = 'none';
+  document.getElementById('mfail').style.display = 'none';
+  modal.classList.add('open');
+});
 modal.addEventListener('click', function(e){ if(e.target===modal) modal.classList.remove('open'); });
 
 document.getElementById('msend').addEventListener('click', async function(){
