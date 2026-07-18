@@ -3,6 +3,13 @@
 ## Запуск
 Двойной клик на `index.html` — открывается в любом браузере. Интернет нужен только для отправки формы.
 
+## Яндекс Метрика
+В `index.html` установлен счётчик **110836947** с Вебвизором, картой кликов и отслеживанием ссылок.
+
+События для целей: `phone_click`, `email_click`, `form_open`, `form_submit`,
+`calculator_use`, `halva_interest`, `vk_click`, `whatsapp_click`,
+`telegram_click`, `max_click`.
+
 ## Включить приём заявок (2 минуты)
 1. Зайди на https://web3forms.com, введи почту **i@kuranov-7.ru** → на почту придёт Access Key.
 2. Открой `index.html`, найди строку `WEB3FORMS_KEY: ''` (блок CONFIG внизу файла).

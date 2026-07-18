@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ЛАЙК ФАСАД — кровля, фасады и заборы под ключ. Абакан · Хакасия · Красноярск</title>
 <meta name="description" content="Рассчитайте предварительную стоимость кровли, фасада или забора за 1 минуту. Фиксированная смета без скрытых доплат. Гарантия 36 месяцев.">
+<!-- Yandex.Metrika counter -->
+<script>
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+(window,document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
+
+ym(110836947,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
+</script>
+<!-- /Yandex.Metrika counter -->
 <style>
 :root{
   --blue:#005A9D;
@@ -204,6 +214,7 @@ footer{margin-top:80px;background:var(--blue-deep);color:#fff;padding:38px 0 44p
 </style>
 </head>
 <body>
+<noscript><div><img src="https://mc.yandex.ru/watch/110836947" style="position:absolute;left:-9999px" alt=""></div></noscript>
 
 <header>
   <div class="wrap hrow">
@@ -776,6 +787,34 @@ document.getElementById('phoneThanks').textContent = CONFIG.PHONE_DISPLAY;
 document.getElementById('mailBottom').href = 'mailto:'+CONFIG.EMAIL;
 document.getElementById('mailBottom').textContent = CONFIG.EMAIL;
 
+/* ============ цели Яндекс Метрики ============ */
+function reachGoal(name, params){
+  if(typeof window.ym === 'function') window.ym(110836947, 'reachGoal', name, params || {});
+}
+
+document.addEventListener('click', function(e){
+  var link = e.target.closest('a[href]');
+  if(!link) return;
+  var href = (link.getAttribute('href') || '').toLowerCase();
+  if(href.indexOf('tel:') === 0) reachGoal('phone_click');
+  else if(href.indexOf('mailto:') === 0) reachGoal('email_click');
+  else if(href.indexOf('vk.com') !== -1) reachGoal('vk_click');
+  else if(href.indexOf('wa.me') !== -1 || href.indexOf('whatsapp') !== -1) reachGoal('whatsapp_click');
+  else if(href.indexOf('t.me') !== -1 || href.indexOf('telegram') !== -1) reachGoal('telegram_click');
+  else if(href.indexOf('max.ru') !== -1 || href.indexOf('maxapp') !== -1) reachGoal('max_click');
+});
+
+var calculatorGoalSent = false;
+document.getElementById('calc').addEventListener('input', function(){
+  if(!calculatorGoalSent){ calculatorGoalSent = true; reachGoal('calculator_use'); }
+});
+document.getElementById('calc').addEventListener('click', function(e){
+  if(!calculatorGoalSent && (e.target.closest('.tab') || e.target.closest('.seg button') || e.target.closest('.num button'))){
+    calculatorGoalSent = true;
+    reachGoal('calculator_use');
+  }
+});
+
 /* ============ галерея до/после ============ */
 (function(){
   if(!PHOTOS.length) return;
@@ -895,6 +934,7 @@ recalc();
 /* ============ модалка и отправка ============ */
 var modal = document.getElementById('modal');
 document.getElementById('openForm').addEventListener('click', function(){
+  reachGoal('form_open', {source:'calculator', direction:activeTab});
   document.getElementById('msummary').textContent = lastCalc.summary+' · вилка: '+fmt(lastCalc.range[0])+'–'+fmt(lastCalc.range[1])+' ₽';
   document.getElementById('mform').style.display = '';
   document.getElementById('mthanks').style.display = 'none';
@@ -903,6 +943,8 @@ document.getElementById('openForm').addEventListener('click', function(){
 });
 document.getElementById('mclose').addEventListener('click', function(){ modal.classList.remove('open'); });
 document.getElementById('halvaBtn').addEventListener('click', function(){
+  reachGoal('halva_interest', {direction:activeTab});
+  reachGoal('form_open', {source:'halva', direction:activeTab});
   lastCalc = lastCalc || { range:[0,0], summary:'' };
   if(lastCalc.summary.indexOf('РАССРОЧКА') !== 0)
     lastCalc = { range: lastCalc.range, summary: 'РАССРОЧКА «Халва» · ' + lastCalc.summary };
@@ -949,6 +991,7 @@ document.getElementById('msend').addEventListener('click', async function(){
   }
   btn.disabled = false; btn.textContent = 'Отправить заявку';
   if(ok){
+    reachGoal('form_submit', {direction:direction});
     document.getElementById('mform').style.display = 'none';
     document.getElementById('mthanks').style.display = 'block';
   } else {
