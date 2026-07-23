@@ -55,10 +55,14 @@ header{padding:16px 0;background:#fff;border-bottom:1px solid var(--line);positi
 .hphone .region{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:5px}
 
 /* ---------- hero (фото-фон) ---------- */
-.hero{position:relative;background:var(--blue-deep) url('photos/hero.jpg') center 38%/cover no-repeat;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(100deg,rgba(6,30,58,.88) 0%,rgba(6,30,58,.72) 45%,rgba(6,30,58,.38) 100%)}
+.hero{position:relative;background:var(--blue-deep) url('photos/hero-desktop.jpg') center center/cover no-repeat;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(100deg,rgba(6,30,58,.72) 0%,rgba(6,30,58,.52) 42%,rgba(6,30,58,.14) 76%,rgba(6,30,58,.05) 100%)}
 .hero-inner{position:relative;z-index:1;padding:78px 0 84px}
-@media(max-width:600px){.hero-inner{padding:56px 0 62px}}
+@media(max-width:600px){
+  .hero{background-image:url('photos/hero-mobile.jpg');background-position:center 48%}
+  .hero::before{background:linear-gradient(180deg,rgba(6,30,58,.56) 0%,rgba(6,30,58,.40) 55%,rgba(6,30,58,.24) 100%)}
+  .hero-inner{padding:56px 0 62px}
+}
 .hero h1{font-size:clamp(28px,5.5vw,46px);line-height:1.15;color:#fff;font-weight:800;max-width:640px;text-shadow:0 2px 18px rgba(0,0,0,.35)}
 .hero h1 em{font-style:normal;color:var(--orange)}
 .hero p{margin-top:16px;max-width:540px;color:#E4ECF5;font-size:16.5px;text-shadow:0 1px 10px rgba(0,0,0,.35)}
