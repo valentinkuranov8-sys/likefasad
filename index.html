@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ЛАЙК ФАСАД — кровля, фасады и заборы под ключ. Абакан · Хакасия · Красноярск</title>
 <meta name="description" content="Рассчитайте предварительную стоимость кровли, фасада или забора за 1 минуту. Фиксированная смета без скрытых доплат. Гарантия 36 месяцев.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 <!-- Yandex.Metrika counter -->
 <script>
 (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -56,22 +59,22 @@ header{padding:16px 0;background:#fff;border-bottom:1px solid var(--line);positi
 
 /* ---------- hero (фото-фон) ---------- */
 .hero{position:relative;background:var(--blue-deep);overflow:hidden;isolation:isolate}
-.hero::after{content:'';position:absolute;z-index:0;inset:-3%;background:url('photos/hero-desktop.jpg') center center/cover no-repeat;transform:scale(1.02);animation:heroDrift 18s ease-in-out infinite alternate;will-change:transform;pointer-events:none}
+.hero::after{content:'';position:absolute;z-index:0;inset:-2%;background:url('photos/hero-desktop.jpg') center center/cover no-repeat;transform:scale(1.018);animation:heroDrift 32s ease-in-out infinite alternate;will-change:transform;pointer-events:none}
 .hero::before{content:'';position:absolute;z-index:1;inset:0;background:linear-gradient(100deg,rgba(6,30,58,.72) 0%,rgba(6,30,58,.52) 42%,rgba(6,30,58,.14) 76%,rgba(6,30,58,.05) 100%);pointer-events:none}
 .hero-inner{position:relative;z-index:2;padding:78px 0 84px}
 @keyframes heroDrift{
-  from{transform:scale(1.02) translate3d(0,0,0)}
-  to{transform:scale(1.065) translate3d(-.7%,-.3%,0)}
+  from{transform:scale(1.018) translate3d(0,0,0)}
+  to{transform:scale(1.045) translate3d(-.35%,-.15%,0)}
 }
 @media(max-width:600px){
   .hero::after{background-image:url('photos/hero-mobile.jpg');background-position:center 48%;animation:none;transform:scale(1.01)}
   .hero::before{background:linear-gradient(180deg,rgba(6,30,58,.56) 0%,rgba(6,30,58,.40) 55%,rgba(6,30,58,.24) 100%)}
   .hero-inner{padding:56px 0 62px}
 }
-.hero h1{font-size:clamp(28px,5.5vw,46px);line-height:1.15;color:#fff;font-weight:800;max-width:640px;text-shadow:0 2px 18px rgba(0,0,0,.35);opacity:0;animation:heroIn .75s .08s cubic-bezier(.22,.8,.3,1) forwards}
+.hero h1{font-size:clamp(28px,5.5vw,46px);line-height:1.15;color:#fff;font-weight:800;max-width:640px;text-shadow:0 2px 18px rgba(0,0,0,.35);opacity:0;animation:heroIn 1s .1s cubic-bezier(.22,.8,.3,1) forwards}
 .hero h1 em{font-style:normal;color:var(--orange)}
-.hero p{margin-top:16px;max-width:540px;color:#E4ECF5;font-size:16.5px;text-shadow:0 1px 10px rgba(0,0,0,.35);opacity:0;animation:heroIn .75s .2s cubic-bezier(.22,.8,.3,1) forwards}
-.hero .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;opacity:0;animation:heroIn .75s .32s cubic-bezier(.22,.8,.3,1) forwards}
+.hero p{margin-top:16px;max-width:540px;color:#E4ECF5;font-size:16.5px;text-shadow:0 1px 10px rgba(0,0,0,.35);opacity:0;animation:heroIn 1s .28s cubic-bezier(.22,.8,.3,1) forwards}
+.hero .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;opacity:0;animation:heroIn 1s .46s cubic-bezier(.22,.8,.3,1) forwards}
 .hero .badge{background:rgba(0,90,157,.85);backdrop-filter:blur(4px);color:#fff;font-size:13px;font-weight:600;padding:8px 14px;border:1px solid rgba(255,255,255,.12);border-radius:10px;box-shadow:0 7px 20px rgba(4,25,48,.16)}
 .hero .badge.or{background:var(--orange)}
 @keyframes heroIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
