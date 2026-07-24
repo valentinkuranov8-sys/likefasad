@@ -58,18 +58,15 @@ header{padding:16px 0;background:#fff;border-bottom:1px solid var(--line);positi
 .hphone .region{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:5px}
 
 /* ---------- hero (фото-фон) ---------- */
-.hero{position:relative;background:var(--blue-deep);overflow:hidden;isolation:isolate}
-.hero::after{content:'';position:absolute;z-index:0;inset:-2%;background:url('photos/hero-desktop.jpg') center center/cover no-repeat;transform:scale(1.018);animation:heroDrift 32s ease-in-out infinite alternate;will-change:transform;pointer-events:none}
+.hero{position:relative;aspect-ratio:1672/941;background:var(--blue-deep);overflow:hidden;isolation:isolate}
+.hero::after{content:'';position:absolute;z-index:0;inset:0;background:url('photos/hero-desktop.jpg') center center/100% 100% no-repeat;pointer-events:none}
 .hero::before{content:'';position:absolute;z-index:1;inset:0;background:linear-gradient(100deg,rgba(6,30,58,.72) 0%,rgba(6,30,58,.52) 42%,rgba(6,30,58,.14) 76%,rgba(6,30,58,.05) 100%);pointer-events:none}
-.hero-inner{position:relative;z-index:2;padding:78px 0 84px}
-@keyframes heroDrift{
-  from{transform:scale(1.018) translate3d(0,0,0)}
-  to{transform:scale(1.045) translate3d(-.35%,-.15%,0)}
-}
+.hero-inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;padding-top:48px;padding-bottom:48px}
 @media(max-width:600px){
-  .hero::after{background-image:url('photos/hero-mobile.jpg');background-position:center 48%;animation:none;transform:scale(1.01)}
+  .hero{aspect-ratio:971/1620}
+  .hero::after{background-image:url('photos/hero-mobile.jpg')}
   .hero::before{background:linear-gradient(180deg,rgba(6,30,58,.56) 0%,rgba(6,30,58,.40) 55%,rgba(6,30,58,.24) 100%)}
-  .hero-inner{padding:56px 0 62px}
+  .hero-inner{padding-top:40px;padding-bottom:40px}
 }
 .hero h1{font-size:clamp(28px,5.5vw,46px);line-height:1.15;color:#fff;font-weight:800;max-width:640px;text-shadow:0 2px 18px rgba(0,0,0,.35);opacity:0;animation:heroIn 1s .1s cubic-bezier(.22,.8,.3,1) forwards}
 .hero h1 em{font-style:normal;color:var(--orange)}
@@ -184,7 +181,7 @@ a.rchip:hover{border-color:var(--blue);transform:translateY(-2px)}
 .motion-ready .reveal-section{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.22,.8,.3,1),transform .7s cubic-bezier(.22,.8,.3,1)}
 .motion-ready .reveal-section.visible{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){
-  .hero::after{animation:none;transform:scale(1.02)}
+  .hero::after{animation:none;transform:none}
   .hero h1,.hero p,.hero .badges{animation:none;opacity:1}
   .motion-ready .reveal-section{opacity:1;transform:none;transition:none}
 }
