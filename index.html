@@ -58,12 +58,12 @@ header{padding:16px 0;background:#fff;border-bottom:1px solid var(--line);positi
 .hphone .region{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:5px}
 
 /* ---------- hero (фото-фон) ---------- */
-.hero{position:relative;aspect-ratio:1672/941;background:var(--blue-deep);overflow:hidden;isolation:isolate}
-.hero::after{content:'';position:absolute;z-index:0;inset:0;background:url('photos/hero-desktop.jpg') center center/100% 100% no-repeat;pointer-events:none}
+.hero{position:relative;height:clamp(440px,50vh,560px);background:var(--blue-deep);overflow:hidden;isolation:isolate}
+.hero::after{content:'';position:absolute;z-index:0;inset:0;background:url('photos/hero-desktop-wide.jpg') center center/100% 100% no-repeat;pointer-events:none}
 .hero::before{content:'';position:absolute;z-index:1;inset:0;background:linear-gradient(100deg,rgba(6,30,58,.72) 0%,rgba(6,30,58,.52) 42%,rgba(6,30,58,.14) 76%,rgba(6,30,58,.05) 100%);pointer-events:none}
 .hero-inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;padding-top:48px;padding-bottom:48px}
 @media(max-width:600px){
-  .hero{aspect-ratio:971/1620}
+  .hero{height:auto;aspect-ratio:971/1620}
   .hero::after{background-image:url('photos/hero-mobile.jpg')}
   .hero::before{background:linear-gradient(180deg,rgba(6,30,58,.56) 0%,rgba(6,30,58,.40) 55%,rgba(6,30,58,.24) 100%)}
   .hero-inner{padding-top:40px;padding-bottom:40px}
