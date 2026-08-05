@@ -209,6 +209,7 @@ footer{margin-top:80px;background:var(--blue-deep);color:#fff;padding:38px 0 44p
 .fcol p{font-size:12.5px;color:#B9C8D9;margin-top:8px;max-width:420px}
 .fcol a{color:var(--orange);text-decoration:none}
 .fphone a{display:inline-block;background:var(--orange);color:#fff;font-weight:800;font-size:18px;text-decoration:none;padding:11px 20px;border-radius:999px}
+.telegram-link{font-weight:700}
 
 /* ---------- modal ---------- */
 .modal{position:fixed;inset:0;background:rgba(11,30,50,.55);backdrop-filter:blur(5px);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
@@ -221,15 +222,11 @@ footer{margin-top:80px;background:var(--blue-deep);color:#fff;padding:38px 0 44p
 .mbox input[type=text],.mbox input[type=tel]{width:100%;padding:15px 14px;margin-bottom:12px;background:#fff;border:1.5px solid var(--line2);border-radius:10px;color:var(--text);font-size:16px;outline:none;transition:.2s}
 .mbox input:focus{border-color:var(--blue)}
 .mbox input.err{border-color:#D9534F}
-.msend{width:100%;padding:16px;background:var(--orange);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:800;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:.25s}
-.msend:hover{background:var(--orange-dark)}
-.msend[disabled]{opacity:.55;cursor:wait}
-.mthanks{text-align:center;padding:26px 0 10px;display:none}
-.mthanks .tick{width:60px;height:60px;margin:0 auto 18px;border:2px solid var(--ok);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ok);font-size:28px}
-.mthanks h3{margin-bottom:8px}
-.mthanks p{color:var(--muted);font-size:14px}
-.mfail{display:none;font-size:13px;color:#C0453F;margin-top:10px;text-align:center;line-height:1.55}
-.mfail a{color:var(--blue);font-weight:700}
+.amo-form-shell{min-height:360px}
+.amo-form-shell iframe{display:block;width:100%!important;max-width:100%;border:0}
+.modal-telegram{display:flex;justify-content:center;margin:0 0 14px}
+.modal-telegram a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 16px;border:1px solid var(--line2);border-radius:10px;color:var(--blue);font-size:14px;font-weight:700;text-decoration:none;transition:.2s}
+.modal-telegram a:hover{border-color:var(--blue);background:var(--bg)}
 </style>
 </head>
 <body>
@@ -576,7 +573,7 @@ footer{margin-top:80px;background:var(--blue-deep);color:#fff;padding:38px 0 44p
     </div>
     <div class="fcol" style="text-align:right">
       <div class="fphone"><a id="phoneBottom" href="tel:">8 (962) 077-84-14</a></div>
-      <p style="margin-top:12px"><a id="mailBottom" href="mailto:">i@kuranov-7.ru</a><br>Ежедневно с 9:00 до 20:00 · <a href="https://vk.com/likefasad">ВКонтакте</a></p>
+      <p style="margin-top:12px"><a id="mailBottom" href="mailto:">i@kuranov-7.ru</a><br>Ежедневно с 9:00 до 20:00 · <a href="https://vk.com/likefasad">ВКонтакте</a> · <a class="telegram-link" data-telegram-link href="https://t.me/LikeFasadAbakanBot" target="_blank" rel="noopener">Telegram</a></p>
     </div>
   </div>
 </footer>
@@ -591,20 +588,10 @@ footer{margin-top:80px;background:var(--blue-deep);color:#fff;padding:38px 0 44p
 <div class="modal" id="modal">
   <div class="mbox">
     <button class="mclose" id="mclose">×</button>
-    <div id="mform">
-      <h3>Точный расчёт по вашим параметрам</h3>
-      <div class="msub">Оставьте телефон — перезвоним в течение дня, уточним детали и подготовим смету.</div>
+    <div id="mform" class="amo-form-shell">
       <div class="msummary" id="msummary"></div>
-      <input type="text" id="in-name" placeholder="Ваше имя" autocomplete="name">
-      <input type="tel" id="in-phone" placeholder="Телефон: +7 ___ ___-__-__" autocomplete="tel" inputmode="tel">
-      <input type="checkbox" id="botcheck" style="display:none" tabindex="-1" autocomplete="off">
-      <button class="msend" id="msend">Отправить заявку</button>
-      <div class="mfail" id="mfail"></div>
-    </div>
-    <div class="mthanks" id="mthanks">
-      <div class="tick">✓</div>
-      <h3 style="color:var(--blue-deep)">Спасибо! Заявка принята</h3>
-      <p>Перезвоним в течение дня.<br>Если срочно — звоните: <a id="phoneThanks" href="tel:" style="color:var(--orange);font-weight:800">8 (962) 077-84-14</a></p>
+      <div class="modal-telegram"><a data-telegram-link href="https://t.me/LikeFasadAbakanBot" target="_blank" rel="noopener">Написать в Telegram</a></div>
+      <script>!function(a,m,o,c,r,m){a[o+c]=a[o+c]||{setMeta:function(p){this.params=(this.params||[]).concat([p])}},a[o+r]=a[o+r]||function(f){a[o+r].f=(a[o+r].f||[]).concat([f])},a[o+r]({id:"1736058",hash:"81be627ebf951acb14bec4afd2ec25ed",locale:"ru"}),a[o+m]=a[o+m]||function(f,k){a[o+m].f=(a[o+m].f||[]).concat([[f,k]])}}(window,0,"amo_forms_","params","load","loaded");</script>
     </div>
   </div>
 </div>
@@ -727,7 +714,7 @@ var CONFIG = {
   PHONE_DISPLAY: '8 (962) 077-84-14',
   PHONE_TEL: '+79620778414',
   EMAIL: 'i@kuranov-7.ru',
-  WEB3FORMS_KEY: 'f1e73457-4d66-4521-ba20-fc2be63b7b96',  /* Web3Forms → заявки на i@kuranov-7.ru */
+  TELEGRAM_URL: 'https://t.me/LikeFasadAbakanBot',
   AVITO_URL: 'https://www.avito.ru/brands/i354217874',
   GIS_URL: 'https://2gis.ru/abakan/search/%D0%BB%D0%B0%D0%B9%D0%BA%20%D1%84%D0%B0%D1%81%D0%B0%D0%B4'
 };
@@ -806,12 +793,11 @@ var REVIEWS = [
 
 document.getElementById('phoneTop').href = 'tel:'+CONFIG.PHONE_TEL;
 document.getElementById('phoneBottom').href = 'tel:'+CONFIG.PHONE_TEL;
-document.getElementById('phoneThanks').href = 'tel:'+CONFIG.PHONE_TEL;
 document.getElementById('phoneTop').textContent = CONFIG.PHONE_DISPLAY;
 document.getElementById('phoneBottom').textContent = CONFIG.PHONE_DISPLAY;
-document.getElementById('phoneThanks').textContent = CONFIG.PHONE_DISPLAY;
 document.getElementById('mailBottom').href = 'mailto:'+CONFIG.EMAIL;
 document.getElementById('mailBottom').textContent = CONFIG.EMAIL;
+document.querySelectorAll('[data-telegram-link]').forEach(function(link){ link.href = CONFIG.TELEGRAM_URL; });
 
 /* ============ цели Яндекс Метрики ============ */
 function reachGoal(name, params){
@@ -959,13 +945,20 @@ recalc();
 
 /* ============ модалка и отправка ============ */
 var modal = document.getElementById('modal');
+function loadAmoForm(){
+  if(document.getElementById('amoforms_script_1736058')) return;
+  var script = document.createElement('script');
+  script.id = 'amoforms_script_1736058';
+  script.async = true;
+  script.charset = 'utf-8';
+  script.src = 'https://forms.amocrm.ru/forms/assets/js/amoforms.js?1785902841';
+  document.getElementById('mform').appendChild(script);
+}
 document.getElementById('openForm').addEventListener('click', function(){
   reachGoal('form_open', {source:'calculator', direction:activeTab});
   document.getElementById('msummary').textContent = lastCalc.summary+' · вилка: '+fmt(lastCalc.range[0])+'–'+fmt(lastCalc.range[1])+' ₽';
-  document.getElementById('mform').style.display = '';
-  document.getElementById('mthanks').style.display = 'none';
-  document.getElementById('mfail').style.display = 'none';
   modal.classList.add('open');
+  loadAmoForm();
 });
 document.getElementById('mclose').addEventListener('click', function(){ modal.classList.remove('open'); });
 document.getElementById('halvaBtn').addEventListener('click', function(){
@@ -975,57 +968,10 @@ document.getElementById('halvaBtn').addEventListener('click', function(){
   if(lastCalc.summary.indexOf('РАССРОЧКА') !== 0)
     lastCalc = { range: lastCalc.range, summary: 'РАССРОЧКА «Халва» · ' + lastCalc.summary };
   document.getElementById('msummary').textContent = 'Интересует рассрочка 0% по карте «Халва» · ' + lastCalc.summary.replace('РАССРОЧКА «Халва» · ','');
-  document.getElementById('mform').style.display = '';
-  document.getElementById('mthanks').style.display = 'none';
-  document.getElementById('mfail').style.display = 'none';
   modal.classList.add('open');
+  loadAmoForm();
 });
 modal.addEventListener('click', function(e){ if(e.target===modal) modal.classList.remove('open'); });
-
-document.getElementById('msend').addEventListener('click', async function(){
-  var nameEl = document.getElementById('in-name'), phoneEl = document.getElementById('in-phone');
-  var name = nameEl.value.trim(), phone = phoneEl.value.trim();
-  var digits = phone.replace(/\D/g,'');
-  nameEl.classList.toggle('err', !name);
-  phoneEl.classList.toggle('err', digits.length < 10);
-  if(!name || digits.length < 10) return;
-  if(document.getElementById('botcheck').checked) return;
-
-  var direction = lastCalc.summary.split(' · ')[0];
-  var body = {
-    access_key: CONFIG.WEB3FORMS_KEY,
-    subject: 'Заявка с сайта — '+direction+' — '+name,
-    from_name: 'Сайт ЛАЙК ФАСАД',
-    'Имя': name,
-    'Телефон': phone,
-    'Параметры': lastCalc.summary,
-    'Вилка': fmt(lastCalc.range[0])+' – '+fmt(lastCalc.range[1])+' ₽',
-    botcheck: false
-  };
-  var btn = this;
-  btn.disabled = true; btn.textContent = 'Отправляем…';
-  var ok = false;
-  if(CONFIG.WEB3FORMS_KEY){
-    try{
-      var r = await fetch('https://api.web3forms.com/submit', {
-        method:'POST', headers:{'Content-Type':'application/json',Accept:'application/json'},
-        body: JSON.stringify(body)
-      });
-      var j = await r.json();
-      ok = !!j.success;
-    }catch(e){ ok = false; }
-  }
-  btn.disabled = false; btn.textContent = 'Отправить заявку';
-  if(ok){
-    reachGoal('form_submit', {direction:direction});
-    document.getElementById('mform').style.display = 'none';
-    document.getElementById('mthanks').style.display = 'block';
-  } else {
-    var f = document.getElementById('mfail');
-    f.innerHTML = 'Не получилось отправить автоматически.<br>Позвоните нам: <a href="tel:'+CONFIG.PHONE_TEL+'">'+CONFIG.PHONE_DISPLAY+'</a> или напишите на <a href="mailto:'+CONFIG.EMAIL+'">'+CONFIG.EMAIL+'</a>';
-    f.style.display = 'block';
-  }
-});
 
 /* ============ спокойное появление разделов ============ */
 (function(){
