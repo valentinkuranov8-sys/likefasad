@@ -733,6 +733,8 @@ var CONFIG = {
   PHONE_DISPLAY: '8 (962) 077-84-14',
   PHONE_TEL: '+79620778414',
   EMAIL: 'i@kuranov-7.ru',
+  EMAIL_SUBJECT: 'ЗАЯВКА С САЙТА — ЛАЙК ФАСАД',
+  EMAIL_BODY: 'Имя:\nТелефон:\nEmail:\nВид работ:\nГород:\nКомментарий:',
   TELEGRAM_URL: 'https://t.me/LikeFasadAbakanBot',
   MAX_URL: 'https://max.ru/u/f9LHodD0cOJaZowDTKfrCTGwf4EGreBKp4MzuC-mPOo3gPBHJeDG_Y2SZmk',
   AVITO_URL: 'https://www.avito.ru/brands/i354217874',
@@ -815,7 +817,9 @@ document.getElementById('phoneTop').href = 'tel:'+CONFIG.PHONE_TEL;
 document.getElementById('phoneBottom').href = 'tel:'+CONFIG.PHONE_TEL;
 document.getElementById('phoneTop').textContent = CONFIG.PHONE_DISPLAY;
 document.getElementById('phoneBottom').textContent = CONFIG.PHONE_DISPLAY;
-document.getElementById('mailBottom').href = 'mailto:'+CONFIG.EMAIL;
+document.getElementById('mailBottom').href = 'mailto:'+CONFIG.EMAIL
+  + '?subject='+encodeURIComponent(CONFIG.EMAIL_SUBJECT)
+  + '&body='+encodeURIComponent(CONFIG.EMAIL_BODY);
 document.getElementById('mailBottom').textContent = CONFIG.EMAIL;
 document.querySelectorAll('[data-telegram-link]').forEach(function(link){ link.href = CONFIG.TELEGRAM_URL; });
 document.querySelectorAll('[data-max-link]').forEach(function(link){ link.href = CONFIG.MAX_URL; });
